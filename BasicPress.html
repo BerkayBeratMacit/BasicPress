@@ -1,0 +1,1590 @@
+﻿<!doctype html>
+<html lang="tr" data-theme="dark">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BasicPress | Lazer Kesim & 3D Baskı</title>
+    <meta name="description" content="BasicPress — Düzce’de lazer kesim, 3D baskı ve üretime hazır tasarım çözümleri. Hızlı üretim, net kalite." />
+
+    <style>
+        :root {
+            --accent: #ff7a00;
+            --accent2: #ff9a3d;
+            --accentGlow: rgba(255,122,0,.35);
+            --bg: #07070a;
+            --bg2: #0c0c12;
+            --text: #f4f6ff;
+            --muted: #aab0c5;
+            --line: rgba(255,255,255,.10);
+            --shadow: 0 20px 80px rgba(0,0,0,.55);
+            --radius: 18px;
+            --radius2: 26px;
+        }
+
+        html[data-theme="light"] {
+            --bg: #f6f7fb;
+            --bg2: #ffffff;
+            --text: #0b0d12;
+            --muted: #4a5568;
+            --line: rgba(0,0,0,.12);
+            --shadow: 0 20px 80px rgba(0,0,0,.12);
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html, body {
+            height: 100%
+        }
+
+        body {
+            margin: 0;
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+            color: var(--text);
+            background: radial-gradient(900px 500px at 10% 10%, rgba(255,122,0,.10), transparent 55%), radial-gradient(700px 400px at 90% 20%, rgba(0,0,0,.08), transparent 55%), linear-gradient(180deg, var(--bg), var(--bg2));
+            line-height: 1.45;
+            padding-bottom: 92px; /* sticky bar için */
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        .wrap {
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 0 18px
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 30;
+            background: color-mix(in srgb, var(--bg) 78%, transparent);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+            gap: 14px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 220px
+        }
+
+        .logo {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(255,122,0,.22), rgba(255,255,255,.04));
+            border: 1px solid rgba(255,122,0,.35);
+            display: grid;
+            place-items: center;
+            box-shadow: 0 14px 45px rgba(255,122,0,.18);
+            font-weight: 800;
+            letter-spacing: .5px;
+            color: rgba(255,255,255,.95);
+        }
+
+        html[data-theme="light"] .logo {
+            color: #0b0d12;
+        }
+
+        .brand b {
+            font-size: 15px;
+            letter-spacing: .3px
+        }
+
+        .brand small {
+            display: block;
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 2px
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            justify-content: center
+        }
+
+            nav a {
+                font-size: 13px;
+                color: var(--muted);
+                padding: 8px 10px;
+                border-radius: 12px;
+                border: 1px solid transparent;
+            }
+
+                nav a:hover {
+                    color: var(--text);
+                    border-color: rgba(255,122,0,.25);
+                    background: rgba(255,122,0,.06);
+                }
+
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 220px;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,.03);
+            color: var(--text);
+            padding: 10px 12px;
+            border-radius: 14px;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: .2s ease;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+            .btn:hover {
+                transform: translateY(-1px);
+                background: rgba(255,255,255,.06)
+            }
+
+        html[data-theme="light"] .btn {
+            background: rgba(0,0,0,.03);
+        }
+
+        .btn.primary {
+            background: linear-gradient(180deg, var(--accent2), var(--accent));
+            border-color: rgba(255,122,0,.55);
+            color: #0b0d12;
+            box-shadow: 0 18px 60px var(--accentGlow);
+        }
+
+        .lang {
+            display: inline-flex;
+            border: 1px solid color-mix(in srgb, var(--line) 90%, transparent);
+            border-radius: 14px;
+            overflow: hidden;
+            background: rgba(255,255,255,.02);
+        }
+
+        html[data-theme="light"] .lang {
+            background: rgba(0,0,0,.03);
+        }
+
+        .lang button {
+            background: transparent;
+            color: var(--muted);
+            border: 0;
+            padding: 10px 12px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+            .lang button.active {
+                color: #0b0d12;
+                background: linear-gradient(180deg, var(--accent2), var(--accent));
+            }
+
+        select.btn {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            padding-right: 34px;
+        }
+
+        .hero {
+            padding: 56px 0 18px
+        }
+
+        .grid-hero {
+            display: grid;
+            grid-template-columns: 1.15fr .85fr;
+            gap: 18px;
+            align-items: stretch
+        }
+
+        .panel {
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,.03);
+            border-radius: var(--radius2);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        html[data-theme="light"] .panel {
+            background: rgba(0,0,0,.03);
+        }
+
+        .panel .inner {
+            padding: 26px
+        }
+
+        .kicker {
+            display: inline-flex;
+            gap: 10px;
+            align-items: center;
+            font-size: 12px;
+            border: 1px solid rgba(255,122,0,.35);
+            padding: 8px 10px;
+            border-radius: 999px;
+            background: rgba(255,122,0,.10);
+            width: fit-content;
+        }
+
+        h1 {
+            font-size: 44px;
+            margin: 14px 0 10px;
+            line-height: 1.05
+        }
+
+        .lead {
+            color: var(--muted);
+            font-size: 15px;
+            margin: 0 0 18px;
+            max-width: 62ch
+        }
+
+        .cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px
+        }
+
+        .meta-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 18px
+        }
+
+        .chip {
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 12px;
+            background: rgba(255,255,255,.02);
+        }
+
+        html[data-theme="light"] .chip {
+            background: rgba(0,0,0,.02);
+        }
+
+        .chip b {
+            display: block;
+            font-size: 13px
+        }
+
+        .chip span {
+            display: block;
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 12px
+        }
+
+        .side {
+            display: flex;
+            flex-direction: column;
+            height: 100%
+        }
+
+            .side .inner {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                height: 100%
+            }
+
+        .stat {
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 14px;
+            background: rgba(255,255,255,.02);
+        }
+
+        html[data-theme="light"] .stat {
+            background: rgba(0,0,0,.02);
+        }
+
+        .stat b {
+            font-size: 14px
+        }
+
+        .stat p {
+            margin: 6px 0 0;
+            color: var(--muted);
+            font-size: 12px
+        }
+
+        .mini-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: auto
+        }
+
+        .shot {
+            height: 94px;
+            border-radius: 16px;
+            border: 1px solid var(--line);
+            background: radial-gradient(140px 80px at 30% 30%, rgba(255,122,0,.16), transparent 60%), linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+            overflow: hidden;
+        }
+
+        html[data-theme="light"] .shot {
+            background: radial-gradient(140px 80px at 30% 30%, rgba(255,122,0,.14), transparent 60%), linear-gradient(135deg, rgba(0,0,0,.05), rgba(0,0,0,.01));
+        }
+
+        section {
+            padding: 22px 0
+        }
+
+        .section-title {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 10px;
+            margin: 10px 0 12px
+        }
+
+            .section-title h2 {
+                margin: 0;
+                font-size: 20px
+            }
+
+            .section-title p {
+                margin: 0;
+                color: var(--muted);
+                font-size: 13px
+            }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px
+        }
+
+        .card {
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: rgba(255,255,255,.03);
+            padding: 16px;
+            transition: .2s ease;
+        }
+
+        html[data-theme="light"] .card {
+            background: rgba(0,0,0,.03);
+        }
+
+        .card:hover {
+            border-color: rgba(255,122,0,.28);
+            box-shadow: 0 18px 65px rgba(255,122,0,.10);
+            transform: translateY(-1px)
+        }
+
+        .card b {
+            display: block;
+            font-size: 14px
+        }
+
+        .card ul {
+            margin: 10px 0 0;
+            padding-left: 18px;
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        .card li {
+            margin: 6px 0
+        }
+
+        .portfolio {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px
+        }
+
+        .work {
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: rgba(255,255,255,.03);
+            transition: .2s ease;
+        }
+
+        html[data-theme="light"] .work {
+            background: rgba(0,0,0,.03);
+        }
+
+        .work:hover {
+            border-color: rgba(255,122,0,.28);
+            box-shadow: 0 18px 65px rgba(255,122,0,.10);
+            transform: translateY(-1px)
+        }
+
+        .thumb {
+            height: 150px;
+            background: radial-gradient(240px 140px at 30% 20%, rgba(255,122,0,.18), transparent 60%), linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+            border-bottom: 1px solid var(--line);
+            position: relative;
+        }
+
+            .thumb span {
+                position: absolute;
+                left: 12px;
+                bottom: 12px;
+                font-size: 12px;
+                color: rgba(255,255,255,.92);
+                border: 1px solid rgba(255,122,0,.35);
+                background: rgba(0,0,0,.25);
+                padding: 6px 10px;
+                border-radius: 999px;
+                backdrop-filter: blur(10px);
+            }
+
+        html[data-theme="light"] .thumb span {
+            color: rgba(0,0,0,.85);
+            background: rgba(255,255,255,.55);
+        }
+
+        .work .info {
+            padding: 14px
+        }
+
+            .work .info b {
+                font-size: 13px
+            }
+
+            .work .info p {
+                margin: 6px 0 0;
+                color: var(--muted);
+                font-size: 12px
+            }
+
+        .two {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            align-items: stretch
+        }
+
+        form {
+            display: grid;
+            gap: 10px
+        }
+
+        .field {
+            display: grid;
+            gap: 6px
+        }
+
+        label {
+            font-size: 12px;
+            color: var(--muted)
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(0,0,0,.22);
+            color: var(--text);
+            outline: none;
+        }
+
+        html[data-theme="light"] input,
+        html[data-theme="light"] textarea,
+        html[data-theme="light"] select {
+            background: rgba(255,255,255,.75);
+            color: var(--text);
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: rgba(255,122,0,.45);
+            box-shadow: 0 0 0 4px rgba(255,122,0,.12);
+        }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical
+        }
+
+        footer {
+            padding: 28px 0 20px;
+            border-top: 1px solid var(--line);
+            margin-top: 18px;
+            color: var(--muted);
+            font-size: 12px
+        }
+
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px
+        }
+
+        .badge {
+            font-size: 11px;
+            color: var(--muted);
+            border: 1px solid var(--line);
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: rgba(255,255,255,.02);
+            white-space: nowrap;
+        }
+
+        /* ===== Cart ===== */
+        .cart-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.55);
+            opacity: 0;
+            pointer-events: none;
+            transition: .2s ease;
+            z-index: 90;
+        }
+
+        .cart-modal {
+            position: fixed;
+            right: 16px;
+            bottom: 86px;
+            width: min(440px, calc(100% - 32px));
+            max-height: 75vh;
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            background: color-mix(in srgb, var(--bg2) 85%, transparent);
+            backdrop-filter: blur(14px);
+            box-shadow: var(--shadow);
+            transform: translateY(20px);
+            opacity: 0;
+            pointer-events: none;
+            transition: .2s ease;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-open .cart-backdrop {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .cart-open .cart-modal {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .cart-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            border-bottom: 1px solid var(--line);
+            gap: 10px;
+        }
+
+            .cart-head .left {
+                display: flex;
+                flex-direction: column;
+                gap: 2px
+            }
+
+            .cart-head small {
+                color: var(--muted);
+                font-size: 12px
+            }
+
+        .cart-body {
+            padding: 12px;
+            overflow: auto;
+            display: grid;
+            gap: 10px
+        }
+
+        .cart-item {
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 10px;
+            background: rgba(255,255,255,.02);
+            display: grid;
+            gap: 8px;
+        }
+
+        .cart-item-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            align-items: flex-start
+        }
+
+            .cart-item-top b {
+                font-size: 13px
+            }
+
+        .qtyRow {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap
+        }
+
+        .qtyBtns {
+            display: flex;
+            gap: 8px;
+            align-items: center
+        }
+
+            .qtyBtns button {
+                padding: 8px 10px
+            }
+
+        .cart-foot {
+            border-top: 1px solid var(--line);
+            padding: 12px;
+            display: grid;
+            gap: 10px;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center
+        }
+
+        .cart-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap
+        }
+
+            .cart-actions .btn {
+                flex: 1;
+                justify-content: center
+            }
+
+        /* ===== Sticky bottom bar ===== */
+        .sticky {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 14px;
+            z-index: 60;
+            display: flex;
+            justify-content: center;
+            pointer-events: none;
+        }
+
+            .sticky .bar {
+                pointer-events: auto;
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                padding: 10px;
+                border-radius: 999px;
+                border: 1px solid var(--line);
+                background: color-mix(in srgb, var(--bg) 78%, transparent);
+                backdrop-filter: blur(14px);
+                box-shadow: 0 25px 80px rgba(0,0,0,.30);
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+        .pill {
+            border-radius: 999px;
+            padding: 10px 14px;
+            border: 1px solid rgba(255,122,0,.55);
+            background: linear-gradient(180deg, var(--accent2), var(--accent));
+            color: #0b0d12;
+            font-size: 13px;
+            display: inline-flex;
+            gap: 8px;
+            align-items: center;
+            box-shadow: 0 18px 60px var(--accentGlow);
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+            .pill.secondary {
+                background: rgba(255,255,255,.04);
+                border-color: var(--line);
+                color: var(--muted);
+                box-shadow: none;
+            }
+
+        html[data-theme="light"] .pill.secondary {
+            background: rgba(0,0,0,.03);
+        }
+
+        /* ===== Responsive fixes (header taşmasın) ===== */
+        @media (max-width: 980px) {
+            .nav {
+                flex-wrap: wrap
+            }
+
+            nav {
+                width: 100%;
+                justify-content: flex-start
+            }
+
+            .actions {
+                width: 100%;
+                justify-content: space-between
+            }
+
+            .brand {
+                min-width: unset
+            }
+
+            .actions {
+                min-width: unset
+            }
+
+            .grid-hero {
+                grid-template-columns: 1fr
+            }
+
+            h1 {
+                font-size: 38px
+            }
+
+            .cards, .portfolio, .shop-grid {
+                grid-template-columns: 1fr
+            }
+
+            .two {
+                grid-template-columns: 1fr
+            }
+        }
+
+        /* küçük ekranda header'daki dili gizle, sticky bar'da göster */
+        @media (max-width: 520px) {
+            .actions .lang {
+                display: none !important;
+            }
+
+            .sticky .lang {
+                display: inline-flex !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="wrap">
+            <div class="nav">
+                <a class="brand" href="#top" aria-label="BasicPress">
+                    <div class="logo">BP</div>
+                    <div>
+                        <b>BasicPress</b>
+                        <small data-i18n="nav.tagline">Hızlı üretim, net kalite.</small>
+                    </div>
+                </a>
+
+                <nav>
+                    <a href="#services" data-i18n="nav.services">Hizmetler</a>
+                    <a href="#portfolio" data-i18n="nav.portfolio">Portföy</a>
+                    <a href="#shop" data-i18n="nav.shop">Mağaza</a>
+                    <a href="#quote" data-i18n="nav.quote">Teklif</a>
+                    <a href="#contact" data-i18n="nav.contact">İletişim</a>
+                </nav>
+
+                <div class="actions">
+                    <div class="lang" role="group" aria-label="Language">
+                        <button id="btnTR" class="active" type="button">TR</button>
+                        <button id="btnEN" type="button">EN</button>
+                    </div>
+
+                    <button class="btn" id="themeToggle" type="button" aria-label="Theme toggle">
+                        <span id="themeIcon">🌙</span>
+                        <span id="themeText">Karanlık</span>
+                    </button>
+
+                    <select id="currencySelect" class="btn" aria-label="Currency">
+                        <option value="TRY">₺ TRY</option>
+                        <option value="USD">$ USD</option>
+                        <option value="EUR">€ EUR</option>
+                    </select>
+
+                    <button class="btn primary" id="openCart" type="button">
+                        🛒 <span data-i18n="shop.cart">Sepet</span> (<span id="cartCount">0</span>)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="top">
+        <div class="wrap">
+
+            <section class="hero">
+                <div class="grid-hero">
+                    <div class="panel">
+                        <div class="inner">
+                            <div class="kicker" data-i18n="hero.kicker">Düzce’de hızlı üretim & temiz işçilik</div>
+                            <h1 data-i18n="hero.title">Hızlı üretim, net kalite.</h1>
+
+                            <p class="lead" data-i18n="hero.lead">
+                                Lazer kesim ve 3D baskıda; hızlı teslim, temiz işçilik ve üretime hazır sonuçlar.
+                            </p>
+
+                            <div class="cta-row">
+                                <a class="btn primary" id="waTop" href="#" data-i18n="hero.cta1">WhatsApp’tan Teklif Al</a>
+                                <a class="btn" href="#portfolio" data-i18n="hero.cta2">Örnek İşleri Gör</a>
+                                <a class="btn" href="#services" data-i18n="hero.cta3">Hizmetlere Git</a>
+                            </div>
+
+                            <div class="meta-row">
+                                <div class="chip">
+                                    <b data-i18n="hero.chip1t">Dosya ile çalışır</b>
+                                    <span data-i18n="hero.chip1d">STL, STEP, DXF, PDF</span>
+                                </div>
+                                <div class="chip">
+                                    <b data-i18n="hero.chip2t">Hızlı teklif</b>
+                                    <span data-i18n="hero.chip2d">İhtiyaca göre net fiyat</span>
+                                </div>
+                                <div class="chip">
+                                    <b data-i18n="hero.chip3t">Kurumsal</b>
+                                    <span data-i18n="hero.chip3d">Tabela, stand, promosyon</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <aside class="panel side">
+                        <div class="inner">
+                            <div class="stat">
+                                <b data-i18n="side.s1t">Kısa üretim süreleri</b>
+                                <p data-i18n="side.s1d">Prototip & küçük seri için ideal.</p>
+                            </div>
+                            <div class="stat">
+                                <b data-i18n="side.s2t">Doğru malzeme seçimi</b>
+                                <p data-i18n="side.s2d">PLA/PETG/ABS + pleksi/MDF.</p>
+                            </div>
+                            <div class="stat">
+                                <b data-i18n="side.s3t">Düzce</b>
+                                <p data-i18n="side.s3d">En hızlı kanal: WhatsApp</p>
+                            </div>
+
+                            <div class="mini-gallery" aria-label="Sample visuals">
+                                <div class="shot"></div><div class="shot"></div><div class="shot"></div><div class="shot"></div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+
+            <section id="services">
+                <div class="section-title">
+                    <div>
+                        <h2 data-i18n="services.title">Hizmetler</h2>
+                        <p data-i18n="services.desc">Tek seferlik üretim veya küçük seri.</p>
+                    </div>
+                </div>
+
+                <div class="cards">
+                    <div class="card">
+                        <b data-i18n="services.c1t">Lazer Kesim</b>
+                        <ul>
+                            <li data-i18n="services.c1p1">Pleksi, MDF, kontraplak, karton</li>
+                            <li data-i18n="services.c1p2">Logo, tabela, şablon, dekor</li>
+                            <li data-i18n="services.c1p3">DXF/PDF ile hassas iş akışı</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <b data-i18n="services.c2t">3D Baskı</b>
+                        <ul>
+                            <li data-i18n="services.c2p1">Prototip, aparat, ürün parçası</li>
+                            <li data-i18n="services.c2p2">PLA / PETG / ABS</li>
+                            <li data-i18n="services.c2p3">Katman + doluluk ayarı</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <b data-i18n="services.c3t">Tasarım & Modelleme</b>
+                        <ul>
+                            <li data-i18n="services.c3p1">Çizimden 3D modele</li>
+                            <li data-i18n="services.c3p2">Ölçülendirme + üretime hazırlık</li>
+                            <li data-i18n="services.c3p3">Revize desteği</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="portfolio">
+                <div class="section-title">
+                    <div>
+                        <h2 data-i18n="portfolio.title">Portföy (Örnek)</h2>
+                        <p data-i18n="portfolio.desc">Fotoğrafları ekleyince premium görünür.</p>
+                    </div>
+                </div>
+
+                <div class="portfolio">
+                    <article class="work">
+                        <div class="thumb"><span>LASER</span></div>
+                        <div class="info">
+                            <b data-i18n="portfolio.w1t">Pleksi logo tabela</b>
+                            <p data-i18n="portfolio.w1d">Katmanlı kesim + montaj delikleri.</p>
+                        </div>
+                    </article>
+
+                    <article class="work">
+                        <div class="thumb"><span>3D</span></div>
+                        <div class="info">
+                            <b data-i18n="portfolio.w2t">Aparat / tutucu</b>
+                            <p data-i18n="portfolio.w2d">Dayanıklı prototip üretim.</p>
+                        </div>
+                    </article>
+
+                    <article class="work">
+                        <div class="thumb"><span>LASER</span></div>
+                        <div class="info">
+                            <b data-i18n="portfolio.w3t">MDF stand</b>
+                            <p data-i18n="portfolio.w3d">Geçmeli tasarım, hızlı kurulum.</p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section id="shop">
+                <div class="section-title">
+                    <div>
+                        <h2 data-i18n="shop.title">Online Mağaza</h2>
+                        <p data-i18n="shop.desc">Sepete ekle, siparişe geç.</p>
+                    </div>
+                </div>
+
+                <div class="shop-grid" id="shopGrid"></div>
+
+                <div class="cart-backdrop" id="cartBackdrop" aria-hidden="true"></div>
+                <div class="cart-modal" id="cartModal" role="dialog" aria-modal="true">
+                    <div class="cart-head">
+                        <div class="left">
+                            <b data-i18n="cart.title">Sepet</b>
+                            <small><span data-i18n="cart.currency">Para birimi</span>: <span id="cartCurrency">TRY</span></small>
+                        </div>
+                        <button class="btn" id="closeCart" type="button">✕</button>
+                    </div>
+
+                    <div class="cart-body" id="cartBody"></div>
+
+                    <div class="cart-foot">
+                        <div class="cart-total">
+                            <span data-i18n="cart.total">Toplam</span>
+                            <b id="cartTotal">₺ 0.00</b>
+                        </div>
+
+                        <div class="cart-actions">
+                            <button class="btn" id="clearCart" type="button" data-i18n="cart.clear">Temizle</button>
+                            <a class="btn" id="checkoutWA" href="#" data-i18n="cart.checkoutWA">WhatsApp ile Sipariş</a>
+                            <button class="btn primary" id="iyzicoPayBtn" type="button" data-i18n="cart.checkoutIyzico">iyzico ile Öde</button>
+                        </div>
+
+                        <div class="badge" data-i18n="cart.note">Not: Kur şimdilik manuel. iyzico için backend bağlantısı gerekir.</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="quote">
+                <div class="section-title">
+                    <div>
+                        <h2 data-i18n="quote.title">Teklif Al</h2>
+                        <p data-i18n="quote.desc">Formu doldur, WhatsApp’tan gönder.</p>
+                    </div>
+                </div>
+
+                <div class="two">
+                    <div class="panel">
+                        <div class="inner">
+                            <form id="quoteForm">
+                                <div class="field">
+                                    <label for="name" data-i18n="form.name">Ad Soyad</label>
+                                    <input id="name" name="name" placeholder="Örn: Berkay" />
+                                </div>
+
+                                <div class="field">
+                                    <label for="phone" data-i18n="form.phone">Telefon / WhatsApp</label>
+                                    <input id="phone" name="phone" placeholder="05xx..." />
+                                </div>
+
+                                <div class="field">
+                                    <label for="service" data-i18n="form.service">Hizmet</label>
+                                    <select id="service" name="service">
+                                        <option value="Lazer Kesim">Lazer Kesim</option>
+                                        <option value="3D Baskı">3D Baskı</option>
+                                        <option value="Tasarım/Modelleme">Tasarım/Modelleme</option>
+                                        <option value="Karışık">Karışık</option>
+                                    </select>
+                                </div>
+
+                                <div class="field">
+                                    <label for="details" data-i18n="form.details">Detay</label>
+                                    <textarea id="details" name="details" placeholder="Örn: 10 adet, malzeme: pleksi 3mm, ölçü: 20x10cm..."></textarea>
+                                </div>
+
+                                <button class="btn primary" type="submit" data-i18n="form.send">WhatsApp’tan Gönder</button>
+                                <div class="badge" data-i18n="form.hint">Dosya göndermek için WhatsApp’ta STL/DXF/PDF ekleyebilirsin.</div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="inner">
+                            <div class="stat">
+                                <b data-i18n="quote.info1t">Fiyat netleşsin diye</b>
+                                <p data-i18n="quote.info1d">Ölçü / adet / malzeme + mümkünse dosya gönder.</p>
+                            </div>
+                            <div class="stat">
+                                <b data-i18n="quote.info2t">Teslim süresi</b>
+                                <p data-i18n="quote.info2d">Yoğunluk ve adede göre değişir.</p>
+                            </div>
+                            <div class="stat">
+                                <b data-i18n="quote.info3t">Kurumsal sipariş</b>
+                                <p data-i18n="quote.info3d">Tabela, stand, promosyon için küçük seri planları.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact">
+                <div class="section-title">
+                    <div>
+                        <h2 data-i18n="contact.title">İletişim</h2>
+                        <p data-i18n="contact.desc">Düzce — WhatsApp en hızlı kanal.</p>
+                    </div>
+                </div>
+
+                <div class="two">
+                    <div class="card">
+                        <b data-i18n="contact.c1t">BasicPress</b>
+                        <p style="margin-top:10px; color:var(--muted); font-size:13px" data-i18n="contact.c1d">
+                            Telefon: +90 531 486 70 90
+                        </p>
+                        <div class="cta-row" style="margin-top:12px">
+                            <a class="btn primary" id="waContact" href="#" data-i18n="contact.wa">WhatsApp</a>
+                            <a class="btn" href="mailto:info@basicpress.com.tr" data-i18n="contact.mail">E-posta</a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <b data-i18n="contact.c2t">Harita</b>
+                        <p style="margin-top:10px; color:var(--muted); font-size:13px" data-i18n="contact.c2d">
+                            Düzce merkez bazlı. Konum linkini ekleyebiliriz.
+                        </p>
+                        <div class="cta-row" style="margin-top:12px">
+                            <a class="btn" href="https://www.google.com/maps/search/?api=1&query=D%C3%BCzce" target="_blank" rel="noopener" data-i18n="contact.maps">Google Maps’te Aç</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer>
+                © <span id="year"></span> BasicPress — <span data-i18n="footer.note">Hızlı üretim, net kalite.</span>
+            </footer>
+        </div>
+    </main>
+
+    <!-- Sticky Bottom Bar -->
+    <div class="sticky">
+        <div class="bar">
+            <!-- Mobilde TR/EN buraya düşer -->
+            <div class="lang" role="group" aria-label="Language">
+                <button id="btnTR2" type="button">TR</button>
+                <button id="btnEN2" type="button">EN</button>
+            </div>
+
+            <a class="pill" id="waSticky" href="#">💬 <span data-i18n="sticky.wa">WhatsApp Teklif Al</span></a>
+            <a class="pill secondary" href="#shop">🛒 <span data-i18n="sticky.shop">Mağaza</span></a>
+            <button class="pill secondary" id="toTopBtn" type="button">⬆️ <span data-i18n="sticky.top">Yukarı</span></button>
+        </div>
+    </div>
+
+    <script>
+        const WHATSAPP_NUMBER = "905314867090";
+        const DEFAULT_LANG = "tr";
+
+        // Manuel kur (TRY baz)
+        const FX = { TRY: 1, USD: 32.50, EUR: 35.20 };
+        const CURRENCY_KEY = "bp_currency";
+
+        const CART_KEY = "bp_cart_v1";
+        const LANG_KEY = "bp_lang";
+        const THEME_KEY = "bp_theme";
+
+        const products = [
+            { id: "p1", nameTR: "Pleksi Anahtarlık (Kişiye Özel)", nameEN: "Custom Acrylic Keychain", descTR: "İsim/Logo lazer kesim.", descEN: "Laser cut name/logo.", priceTRY: 149 },
+            { id: "p2", nameTR: "3D Baskı Masa İsimliği", nameEN: "3D Printed Desk Nameplate", descTR: "Ofis / masa üstü.", descEN: "Office / desk.", priceTRY: 249 },
+            { id: "p3", nameTR: "Pleksi Logo Tabela (Mini)", nameEN: "Mini Acrylic Logo Sign", descTR: "Duvar/masa kullanım.", descEN: "Wall/desk use.", priceTRY: 499 }
+        ];
+
+        window.i18n = {
+            tr: {
+                "nav.tagline": "Hızlı üretim, net kalite.",
+                "nav.services": "Hizmetler",
+                "nav.portfolio": "Portföy",
+                "nav.shop": "Mağaza",
+                "nav.quote": "Teklif",
+                "nav.contact": "İletişim",
+
+                "hero.kicker": "Düzce’de hızlı üretim & temiz işçilik",
+                "hero.title": "Hızlı üretim, net kalite.",
+                "hero.lead": "Lazer kesim ve 3D baskıda; hızlı teslim, temiz işçilik ve üretime hazır sonuçlar.",
+                "hero.cta1": "WhatsApp’tan Teklif Al",
+                "hero.cta2": "Örnek İşleri Gör",
+                "hero.cta3": "Hizmetlere Git",
+                "hero.chip1t": "Dosya ile çalışır",
+                "hero.chip1d": "STL, STEP, DXF, PDF",
+                "hero.chip2t": "Hızlı teklif",
+                "hero.chip2d": "İhtiyaca göre net fiyat",
+                "hero.chip3t": "Kurumsal",
+                "hero.chip3d": "Tabela, stand, promosyon",
+
+                "side.s1t": "Kısa üretim süreleri",
+                "side.s1d": "Prototip & küçük seri için ideal.",
+                "side.s2t": "Doğru malzeme seçimi",
+                "side.s2d": "PLA/PETG/ABS + pleksi/MDF.",
+                "side.s3t": "Düzce",
+                "side.s3d": "En hızlı kanal: WhatsApp",
+
+                "services.title": "Hizmetler",
+                "services.desc": "Tek seferlik üretim veya küçük seri.",
+                "services.c1t": "Lazer Kesim",
+                "services.c1p1": "Pleksi, MDF, kontraplak, karton",
+                "services.c1p2": "Logo, tabela, şablon, dekor",
+                "services.c1p3": "DXF/PDF ile hassas iş akışı",
+                "services.c2t": "3D Baskı",
+                "services.c2p1": "Prototip, aparat, ürün parçası",
+                "services.c2p2": "PLA / PETG / ABS",
+                "services.c2p3": "Katman + doluluk ayarı",
+                "services.c3t": "Tasarım & Modelleme",
+                "services.c3p1": "Çizimden 3D modele",
+                "services.c3p2": "Ölçülendirme + üretime hazırlık",
+                "services.c3p3": "Revize desteği",
+
+                "portfolio.title": "Portföy (Örnek)",
+                "portfolio.desc": "Fotoğrafları ekleyince premium görünür.",
+                "portfolio.w1t": "Pleksi logo tabela",
+                "portfolio.w1d": "Katmanlı kesim + montaj delikleri.",
+                "portfolio.w2t": "Aparat / tutucu",
+                "portfolio.w2d": "Dayanıklı prototip üretim.",
+                "portfolio.w3t": "MDF stand",
+                "portfolio.w3d": "Geçmeli tasarım, hızlı kurulum.",
+
+                "shop.title": "Online Mağaza",
+                "shop.desc": "Sepete ekle, siparişe geç.",
+                "shop.cart": "Sepet",
+
+                "cart.title": "Sepet",
+                "cart.currency": "Para birimi",
+                "cart.total": "Toplam",
+                "cart.clear": "Temizle",
+                "cart.checkoutWA": "WhatsApp ile Sipariş",
+                "cart.checkoutIyzico": "iyzico ile Öde",
+                "cart.note": "Not: Kur şimdilik manuel. iyzico için backend bağlantısı gerekir.",
+
+                "quote.title": "Teklif Al",
+                "quote.desc": "Formu doldur, WhatsApp’tan gönder.",
+                "form.name": "Ad Soyad",
+                "form.phone": "Telefon / WhatsApp",
+                "form.service": "Hizmet",
+                "form.details": "Detay",
+                "form.send": "WhatsApp’tan Gönder",
+                "form.hint": "Dosya göndermek için WhatsApp’ta STL/DXF/PDF ekleyebilirsin.",
+                "quote.info1t": "Fiyat netleşsin diye",
+                "quote.info1d": "Ölçü / adet / malzeme + mümkünse dosya gönder.",
+                "quote.info2t": "Teslim süresi",
+                "quote.info2d": "Yoğunluk ve adede göre değişir.",
+                "quote.info3t": "Kurumsal sipariş",
+                "quote.info3d": "Tabela, stand, promosyon için küçük seri planları.",
+
+                "contact.title": "İletişim",
+                "contact.desc": "Düzce — WhatsApp en hızlı kanal.",
+                "contact.c1t": "BasicPress",
+                "contact.c1d": "Telefon: +90 531 486 70 90",
+                "contact.wa": "WhatsApp",
+                "contact.mail": "E-posta",
+                "contact.c2t": "Harita",
+                "contact.c2d": "Düzce merkez bazlı. Konum linkini ekleyebiliriz.",
+                "contact.maps": "Google Maps’te Aç",
+
+                "footer.note": "Hızlı üretim, net kalite.",
+
+                "sticky.wa": "WhatsApp Teklif Al",
+                "sticky.shop": "Mağaza",
+                "sticky.top": "Yukarı",
+
+                "theme.dark": "Karanlık",
+                "theme.light": "Aydınlık"
+            },
+
+            en: {
+                "nav.tagline": "Fast production, clear quality.",
+                "nav.services": "Services",
+                "nav.portfolio": "Portfolio",
+                "nav.shop": "Shop",
+                "nav.quote": "Quote",
+                "nav.contact": "Contact",
+
+                "hero.kicker": "Fast production & clean finishing in Düzce",
+                "hero.title": "Fast production, clear quality.",
+                "hero.lead": "Fast turnaround, clean finishing and production-ready results in laser cutting and 3D printing.",
+                "hero.cta1": "Get a Quote on WhatsApp",
+                "hero.cta2": "See Sample Works",
+                "hero.cta3": "Explore Services",
+                "hero.chip1t": "File-ready workflow",
+                "hero.chip1d": "STL, STEP, DXF, PDF",
+                "hero.chip2t": "Quick pricing",
+                "hero.chip2d": "Clear quote based on needs",
+                "hero.chip3t": "Corporate",
+                "hero.chip3d": "Signage, stands, promos",
+
+                "side.s1t": "Short lead times",
+                "side.s1d": "Ideal for prototypes and small-batch runs.",
+                "side.s2t": "Material guidance",
+                "side.s2d": "PLA/PETG/ABS + acrylic/MDF.",
+                "side.s3t": "Düzce",
+                "side.s3d": "Fastest channel: WhatsApp",
+
+                "services.title": "Services",
+                "services.desc": "One-off builds or small series—based on your needs.",
+                "services.c1t": "Laser Cutting",
+                "services.c1p1": "Acrylic, MDF, plywood, cardboard",
+                "services.c1p2": "Logos, signage, stencils, decor",
+                "services.c1p3": "Precise workflow with DXF/PDF",
+                "services.c2t": "3D Printing",
+                "services.c2p1": "Prototypes, jigs, functional parts",
+                "services.c2p2": "PLA / PETG / ABS",
+                "services.c2p3": "Layer & infill tuned per job",
+                "services.c3t": "Design & Modeling",
+                "services.c3p1": "From sketch to 3D model",
+                "services.c3p2": "Dimensioning & production prep",
+                "services.c3p3": "Revisions support",
+
+                "portfolio.title": "Portfolio (Sample)",
+                "portfolio.desc": "Add real photos later for an instant premium look.",
+                "portfolio.w1t": "Acrylic logo signage",
+                "portfolio.w1d": "Layered cut + mounting holes.",
+                "portfolio.w2t": "Fixture / holder",
+                "portfolio.w2d": "Durable prototype production.",
+                "portfolio.w3t": "MDF stand",
+                "portfolio.w3d": "Slot-fit design, quick assembly.",
+
+                "shop.title": "Online Shop",
+                "shop.desc": "Add to cart, continue to order.",
+                "shop.cart": "Cart",
+
+                "cart.title": "Cart",
+                "cart.currency": "Currency",
+                "cart.total": "Total",
+                "cart.clear": "Clear",
+                "cart.checkoutWA": "Order via WhatsApp",
+                "cart.checkoutIyzico": "Pay with iyzico",
+                "cart.note": "Note: FX is manual for now. iyzico requires backend integration.",
+
+                "quote.title": "Get a Quote",
+                "quote.desc": "Fill out the form and send via WhatsApp.",
+                "form.name": "Full name",
+                "form.phone": "Phone / WhatsApp",
+                "form.service": "Service",
+                "form.details": "Details",
+                "form.send": "Send on WhatsApp",
+                "form.hint": "Tip: You can attach STL/DXF/PDF files in the WhatsApp chat.",
+                "quote.info1t": "For accurate pricing",
+                "quote.info1d": "Send dimensions / qty / material + file if possible.",
+                "quote.info2t": "Lead time",
+                "quote.info2d": "Depends on workload and quantity.",
+                "quote.info3t": "Corporate orders",
+                "quote.info3d": "Small-series plans for signage, stands and promos.",
+
+                "contact.title": "Contact",
+                "contact.desc": "Düzce — WhatsApp is the fastest channel.",
+                "contact.c1t": "BasicPress",
+                "contact.c1d": "Phone: +90 531 486 70 90",
+                "contact.wa": "WhatsApp",
+                "contact.mail": "Email",
+                "contact.c2t": "Map",
+                "contact.c2d": "Based in Düzce. We can add your pin link.",
+                "contact.maps": "Open in Google Maps",
+
+                "footer.note": "Fast production, clear quality.",
+
+                "sticky.wa": "WhatsApp Quote",
+                "sticky.shop": "Shop",
+                "sticky.top": "Top",
+
+                "theme.dark": "Dark",
+                "theme.light": "Light"
+            }
+        };
+
+        function buildWA(message) { return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`; }
+
+        function getCurrency() { return localStorage.getItem(CURRENCY_KEY) || "TRY"; }
+        function setCurrency(c) { localStorage.setItem(CURRENCY_KEY, c); renderShop(); renderCart(); }
+        function symbolOf(c) { return c === "TRY" ? "₺" : c === "USD" ? "$" : "€"; }
+        function convertFromTRY(priceTRY) { return priceTRY / FX[getCurrency()]; }
+        function money(v) { return `${symbolOf(getCurrency())} ${Number(v).toFixed(2)}`; }
+
+        function loadCart() { try { return JSON.parse(localStorage.getItem(CART_KEY) || "{}"); } catch { return {}; } }
+        function saveCart(c) { localStorage.setItem(CART_KEY, JSON.stringify(c)); renderCart(); }
+        function cartCount(c) { return Object.values(c).reduce((a, b) => a + b, 0); }
+
+        function applyTheme(theme) {
+            document.documentElement.setAttribute("data-theme", theme);
+            localStorage.setItem(THEME_KEY, theme);
+            updateThemeButtonText();
+        }
+
+        function updateThemeButtonText() {
+            const lang = document.documentElement.getAttribute("lang") || DEFAULT_LANG;
+            const theme = document.documentElement.getAttribute("data-theme") || "dark";
+            const isLight = theme === "light";
+            const icon = document.getElementById("themeIcon");
+            const text = document.getElementById("themeText");
+            if (icon) icon.textContent = isLight ? "☀️" : "🌙";
+
+            const dict = window.i18n?.[lang] || window.i18n?.[DEFAULT_LANG] || {};
+            if (text) text.textContent = isLight ? (dict["theme.light"] || "Light") : (dict["theme.dark"] || "Dark");
+        }
+
+        function setWA() {
+            const lang = document.documentElement.getAttribute("lang") || DEFAULT_LANG;
+            const baseTR =
+                "Merhaba BasicPress!\n\nTeklif almak istiyorum:\n- Hizmet (Lazer/3D): \n- Adet: \n- Malzeme: \n- Ölçü: \n- Dosya (STL/DXF/PDF): \n";
+            const baseEN =
+                "Hi BasicPress!\n\nI’d like a quote:\n- Service (Laser/3D): \n- Quantity: \n- Material: \n- Size: \n- File (STL/DXF/PDF): \n";
+            const base = (lang === "en") ? baseEN : baseTR;
+
+            ["waTop", "waContact", "waSticky"].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.href = buildWA(base);
+            });
+        }
+
+        function getLang() { return localStorage.getItem(LANG_KEY) || DEFAULT_LANG; }
+
+        function applyLang(lang) {
+            document.documentElement.setAttribute("lang", lang);
+
+            document.querySelectorAll("[data-i18n]").forEach(el => {
+                const key = el.getAttribute("data-i18n");
+                const val = window.i18n?.[lang]?.[key];
+                if (val == null) return;
+                el.textContent = val;
+            });
+
+            // Header buttons
+            document.getElementById("btnTR")?.classList.toggle("active", lang === "tr");
+            document.getElementById("btnEN")?.classList.toggle("active", lang === "en");
+            // Sticky buttons
+            document.getElementById("btnTR2")?.classList.toggle("active", lang === "tr");
+            document.getElementById("btnEN2")?.classList.toggle("active", lang === "en");
+
+            setWA();
+            updateThemeButtonText();
+            renderShop();
+            renderCart();
+        }
+
+        function setLang(lang) {
+            localStorage.setItem(LANG_KEY, lang);
+            applyLang(lang);
+        }
+
+        function renderShop() {
+            const grid = document.getElementById("shopGrid");
+            if (!grid) return;
+            const lang = document.documentElement.getAttribute("lang") || DEFAULT_LANG;
+
+            grid.innerHTML = products.map(p => {
+                const name = (lang === "en") ? p.nameEN : p.nameTR;
+                const desc = (lang === "en") ? p.descEN : p.descTR;
+                const price = convertFromTRY(p.priceTRY);
+                return `
+            <article class="card">
+              <b>${name}</b>
+              <p style="margin:8px 0 12px; color:var(--muted); font-size:13px">${desc}</p>
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:10px">
+                <span class="badge">${money(price)}</span>
+                <button class="btn primary" data-add="${p.id}">+ ${(lang === "en") ? "Add" : "Ekle"}</button>
+              </div>
+            </article>
+          `;
+            }).join("");
+
+            grid.querySelectorAll("[data-add]").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const id = btn.getAttribute("data-add");
+                    const cart = loadCart();
+                    cart[id] = (cart[id] || 0) + 1;
+                    saveCart(cart);
+                    openCart();
+                });
+            });
+        }
+
+        function calcTotal(cart) {
+            let t = 0;
+            for (const [id, qty] of Object.entries(cart)) {
+                const p = products.find(x => x.id === id);
+                if (!p) continue;
+                t += convertFromTRY(p.priceTRY) * qty;
+            }
+            return t;
+        }
+
+        function buildOrderMessage(cart) {
+            const lang = document.documentElement.getAttribute("lang") || DEFAULT_LANG;
+            const cur = getCurrency();
+            const items = [];
+
+            for (const [id, qty] of Object.entries(cart)) {
+                const p = products.find(x => x.id === id);
+                if (!p) continue;
+                const name = (lang === "en") ? p.nameEN : p.nameTR;
+                const unit = convertFromTRY(p.priceTRY);
+                items.push(`- ${name} x${qty} = ${money(unit * qty)}`);
+            }
+            const total = money(calcTotal(cart));
+
+            if (lang === "en") {
+                return `Hi BasicPress! I want to order:\nCurrency: ${cur}\n\n${items.join("\n")}\n\nTotal: ${total}\n\nName/Surname:\nPhone:\nCity:\nAddress:\nNotes:`;
+            }
+            return `Merhaba BasicPress! Online sipariş vermek istiyorum:\nPara birimi: ${cur}\n\n${items.join("\n")}\n\nToplam: ${total}\n\nAd Soyad:\nTelefon:\nİl/İlçe:\nAdres:\nNot:`;
+        }
+
+        function renderCart() {
+            const cart = loadCart();
+            document.getElementById("cartCount").textContent = cartCount(cart);
+            document.getElementById("cartCurrency").textContent = getCurrency();
+
+            const body = document.getElementById("cartBody");
+            const totalEl = document.getElementById("cartTotal");
+            const lang = document.documentElement.getAttribute("lang") || DEFAULT_LANG;
+
+            const lines = Object.entries(cart).map(([id, qty]) => {
+                const p = products.find(x => x.id === id);
+                if (!p) return "";
+                const name = (lang === "en") ? p.nameEN : p.nameTR;
+                const unit = convertFromTRY(p.priceTRY);
+                const lineTotal = unit * qty;
+
+                return `
+            <div class="cart-item">
+              <div class="cart-item-top">
+                <b>${name}</b>
+                <span class="badge">${money(lineTotal)}</span>
+              </div>
+              <div class="qtyRow">
+                <div class="qtyBtns">
+                  <button class="btn" data-dec="${id}" type="button">−</button>
+                  <span>${lang === "en" ? "Qty" : "Adet"}: <b>${qty}</b></span>
+                  <button class="btn" data-inc="${id}" type="button">+</button>
+                </div>
+                <button class="btn" data-del="${id}" type="button">${lang === "en" ? "Remove" : "Sil"}</button>
+              </div>
+            </div>
+          `;
+            }).join("");
+
+            body.innerHTML = lines || `<div class="badge">${lang === "en" ? "Your cart is empty." : "Sepet boş."}</div>`;
+            totalEl.textContent = money(calcTotal(cart));
+
+            body.querySelectorAll("[data-inc]").forEach(b => b.addEventListener("click", () => {
+                const id = b.getAttribute("data-inc"); const c = loadCart(); c[id] = (c[id] || 0) + 1; saveCart(c);
+            }));
+            body.querySelectorAll("[data-dec]").forEach(b => b.addEventListener("click", () => {
+                const id = b.getAttribute("data-dec"); const c = loadCart(); c[id] = (c[id] || 0) - 1; if (c[id] <= 0) delete c[id]; saveCart(c);
+            }));
+            body.querySelectorAll("[data-del]").forEach(b => b.addEventListener("click", () => {
+                const id = b.getAttribute("data-del"); const c = loadCart(); delete c[id]; saveCart(c);
+            }));
+
+            document.getElementById("checkoutWA").href = buildWA(buildOrderMessage(cart));
+        }
+
+        function openCart() { document.body.classList.add("cart-open"); }
+        function closeCart() { document.body.classList.remove("cart-open"); }
+
+        function wireQuoteForm() {
+            const form = document.getElementById("quoteForm");
+            if (!form) return;
+
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const name = document.getElementById("name").value.trim();
+                const phone = document.getElementById("phone").value.trim();
+                const service = document.getElementById("service").value;
+                const details = document.getElementById("details").value.trim();
+                const lang = document.documentElement.getAttribute("lang") || DEFAULT_LANG;
+
+                const msg = (lang === "en")
+                    ? `Hi BasicPress! I want a quote.\n\nName: ${name || "-"}\nPhone: ${phone || "-"}\nService: ${service}\nDetails: ${details || "-"}`
+                    : `Merhaba BasicPress! Teklif almak istiyorum.\n\nAd: ${name || "-"}\nTelefon: ${phone || "-"}\nHizmet: ${service}\nDetay: ${details || "-"}`;
+
+                window.open(buildWA(msg), "_blank");
+            });
+        }
+
+        window.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("year").textContent = new Date().getFullYear();
+
+            applyTheme(localStorage.getItem(THEME_KEY) || "dark");
+
+            document.getElementById("themeToggle")?.addEventListener("click", () => {
+                const current = document.documentElement.getAttribute("data-theme") || "dark";
+                applyTheme(current === "dark" ? "light" : "dark");
+            });
+
+            const curSel = document.getElementById("currencySelect");
+            if (curSel) {
+                curSel.value = getCurrency();
+                curSel.addEventListener("change", e => setCurrency(e.target.value));
+            }
+
+            document.getElementById("openCart")?.addEventListener("click", openCart);
+            document.getElementById("closeCart")?.addEventListener("click", closeCart);
+            document.getElementById("cartBackdrop")?.addEventListener("click", closeCart);
+            document.getElementById("clearCart")?.addEventListener("click", () => saveCart({}));
+
+            document.getElementById("iyzicoPayBtn")?.addEventListener("click", () => {
+                alert("iyzico entegrasyonu için Windows hosting üzerinde backend API gerekir. Hazırsan kurulum dosyalarını da hazırlayayım.");
+            });
+
+            document.getElementById("btnTR")?.addEventListener("click", () => setLang("tr"));
+            document.getElementById("btnEN")?.addEventListener("click", () => setLang("en"));
+            document.getElementById("btnTR2")?.addEventListener("click", () => setLang("tr"));
+            document.getElementById("btnEN2")?.addEventListener("click", () => setLang("en"));
+
+            document.getElementById("toTopBtn")?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+            wireQuoteForm();
+
+            applyLang(getLang());
+            renderShop();
+            renderCart();
+        });
+    </script>
+
+</body>
+</html>
